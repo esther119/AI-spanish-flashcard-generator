@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
+import FlashCardList from "./flashCardList";
 
 function App() {
-  const [backendData, setBackendData] = useState(null);
+  const [imageData, setImageData] = useState(null);
 
   useEffect(() => {
-    fetch("/test")
+    console.log("useEffect");
+    fetch("/displayImages")
       .then((res) => res.json())
       .then((data) => {
-        setBackendData(data);
-      }, console.log(backendData));
+        setImageData(data);
+      }, console.log(imageData));
   }, []);
   return (
     <div className="App">
       <h1>App</h1>
-      {typeof backendData === "undefined" ? (
+      
+      {imageData === undefined || imageData === null ? (
         <p>Loading...</p>
       ) : (
-        <p>{backendData}</p>
+        <p>{JSON.stringify(imageData, null, 2)}</p>
+        
       )}
+      {imageData === undefined || imageData === null ? (
+        <p>Loading...</p>
+      ) : (
+        <FlashCardList imageData={imageData} />
+      )} 
     </div>
   );
 }

@@ -1,2 +1,4 @@
 node_modules
 .env
+getCloudinary.js
+cloudinary.js
