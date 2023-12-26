@@ -3,7 +3,7 @@ import generateImagePrompt from "./openai.js";
 
 // const chats = await generateImagePrompt();
 // const prompts = chats.map(prompt => prompt['prompt']);
-const prompts = ['draw a brain']
+const prompts = ['draw hands holding an cute baby puppy']
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
