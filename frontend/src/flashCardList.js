@@ -11,6 +11,8 @@ export default function FlashCardList({ imageData }) {
     for (let i = 0; i < flashCards.length; i += 4) {
       groupedFlashCards.push(flashCards.slice(i, i + 4));
     }
+    const maxIndex = flashCards.length;
+    console.log("maxIndex", maxIndex);
   
     return (
       <div>

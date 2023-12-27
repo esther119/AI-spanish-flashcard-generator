@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import FlashCardList from "./flashCardList";
+import SpanishInput from "./inputBar";
 
 function App() {
   const [imageData, setImageData] = useState(null);
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <h1>App</h1>
+      <SpanishInput />
       {imageData === undefined || imageData === null ? (
         <p>Loading...</p>
       ) : (
