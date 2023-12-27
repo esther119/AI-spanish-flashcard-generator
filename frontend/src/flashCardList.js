@@ -2,27 +2,25 @@ import React from "react";
 import FlashCard from "./flashCard";
 
 export default function FlashCardList({ imageData }) {
-    // Split the flashCards into groups of 4
-    console.log("imageData", imageData);
-    const pairs = Object.entries(imageData);
-
-    // Create an array of sets containing 4 pairs each
-    const setsOfFourPairs = [];
-    for (let i = 0; i < pairs.length; i += 4) {
-      setsOfFourPairs.push(pairs.slice(i, i + 4));
+    const  flashCards = Object.entries(imageData).map(([key, value], index) => ({
+      id: index + 1,
+      front: value,
+      back: key
+    }));
+    const groupedFlashCards = [];
+    for (let i = 0; i < flashCards.length; i += 4) {
+      groupedFlashCards.push(flashCards.slice(i, i + 4));
     }
-    // console.log("setsOfFourPairs", setsOfFourPairs);
   
     return (
       <div>
-        {setsOfFourPairs.map((pairs, index) => (
+        {groupedFlashCards.map((group, index) => (
           <div className="flex flex-row card-grid" key={index}>
-            {pairs.map((flashCard) => 
-              (<FlashCard flashCard={flashCard} key={index} />)
+            {group.map((flashCard) => 
+              (<FlashCard flashCard={flashCard} key={flashCard.id} />)
             )}
           </div>
         ))}
-        <p> Hello</p>
       </div>
     );
   }

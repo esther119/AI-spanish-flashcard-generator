@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 export default function FlashCard({ flashCard }) {
-  console.log("flashCards", flashCard);
+  // console.log("flashCards", flashCard);
   const [flip, setFlip] = useState(false);
+
 
   const handleClick = () => {
     setFlip(!flip);
@@ -21,8 +22,7 @@ export default function FlashCard({ flashCard }) {
                     transition duration-700 ease-in-out
                     backface-hidden ${flip ? "rotate-y-0" : "rotate-y-180"}`}
       >
-        {/* back */}
-        {flashCard[0]} 
+        {flashCard.back} 
       </div>
 
       <div
@@ -33,8 +33,7 @@ export default function FlashCard({ flashCard }) {
                         flip ? "rotate-y-180" : "rotate-y-360"
                       }`}
       >
-        {/* front */}
-        <img src={flashCard[1]} alt="Description" className="object-fit"/>
+        <img src={flashCard.front} alt="Description" className="object-fit"/>
       </div>
     </div>
   );
