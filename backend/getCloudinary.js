@@ -1,12 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-// Cloudinary configuration
-cloudinary.config({ 
-  cloud_name: 'dbdfkyhov', 
-  api_key: '867136646334634', 
-  api_secret: 'kgCn3L32TU2lt_98kK8zRppHsuU' 
-});
-
 // cloudinary.api
 // .resources({ public_id: 'context_dog', context: true, max_results: 1 })
 // .then(result => {

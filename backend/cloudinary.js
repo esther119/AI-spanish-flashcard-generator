@@ -1,9 +1,9 @@
 import {v2 as cloudinary} from 'cloudinary';
           
 cloudinary.config({ 
-  cloud_name: 'dbdfkyhov', 
-  api_key: '867136646334634', 
-  api_secret: 'kgCn3L32TU2lt_98kK8zRppHsuU' 
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 cloudinary.uploader.upload("https://replicate.delivery/pbxt/zTreN22DecueLIBu9VxHQjEfBmGuUCKeV2KyZAAi1SJlG2uQC/out-0.png",
