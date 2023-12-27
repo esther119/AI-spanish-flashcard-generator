@@ -37,6 +37,18 @@ app.get('/displayImages', async (req, res) => {
   }
 });
 
+app.post('/spanishInput', (req, res) => {
+  // Access the data sent from the frontend
+  console.log("request body", req.body);
+  const spanishWord = req.body.spanishWord;
+  console.log('backend received:', spanishWord)
+
+  // Process the data (e.g., translation logic)
+  // const translation = translateSpanishToEnglish(spanishWord);
+
+  // Send a response back to the frontend
+  res.json({ translation: 'translation' });
+});
 
 app.listen(1000, () => {
   console.log('Server is listening on port 1000');
