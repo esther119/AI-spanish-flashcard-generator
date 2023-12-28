@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import generateImagePrompt from './openai.js';
+import generateImageSafe from './replicate.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -39,13 +41,21 @@ app.get('/displayImages', async (req, res) => {
   }
 });
 
-app.post('/spanishInput', (req, res) => {
+app.post('/spanishInput', async (req, res) => {
   // Access the data sent from the frontend
   console.log("request body", JSON.stringify(req.body));
-  const spanishWord = req.body;
+  const spanishWord = req.body.word;
   console.log('backend received:', spanishWord)
 
-  // Process the data (e.g., translation logic)
+  // Process the data if not empty
+  if (spanishWord) {
+    const aiResponse = await generateImagePrompt(spanishWord); 
+    console.log('aiResponse', aiResponse);
+    const ImagePrompt = aiResponse['prompt']
+    const imageLink = await generateImageSafe(ImagePrompt)[0];
+    console.log('imageLink', imageLink);
+    
+  }
   // const translation = translateSpanishToEnglish(spanishWord);
 
   // Send a response back to the frontend
