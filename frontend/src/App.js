@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <h1>App</h1>
-      <SpanishInput />
+      <SpanishInput imageData={imageData} setImageData={setImageData} />
       {imageData === undefined || imageData === null ? (
         <p>Loading...</p>
       ) : (

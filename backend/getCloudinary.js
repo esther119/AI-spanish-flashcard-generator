@@ -48,8 +48,9 @@ async function cloudinarySearch() {
 
     try {
         const response = await cloudinary.search.expression('tags=spanish')
-                                               .sort_by('public_id', 'desc')
+                                               .sort_by('created_at', 'desc')
                                                .with_field('context')
+                                               .max_results(100)
                                                .execute();
 
         const images = response.resources;
@@ -63,7 +64,8 @@ async function cloudinarySearch() {
     } catch (error) {
         console.error('Error:', error);
     }
-
+    const outputlength = Object.keys(outputs).length;
+    console.log("cloudinary display output length", outputlength)
     return outputs;
 }
 

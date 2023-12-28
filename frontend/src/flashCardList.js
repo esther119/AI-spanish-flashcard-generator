@@ -2,7 +2,7 @@ import React from "react";
 import FlashCard from "./flashCard";
 
 export default function FlashCardList({ imageData }) {
-  console.log("imageData", imageData);
+  // console.log("imageData", imageData);
     const  flashCards = Object.entries(imageData).map(([key, value], index) => ({
       id: index + 1,
       front: value,

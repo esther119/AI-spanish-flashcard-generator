@@ -38,7 +38,7 @@ app.get('/displayImages', async (req, res) => {
   }
 });
 
-app.post('/spanishInput', async (req, res) => {
+app.post('/addSpanishWord', async (req, res) => {
   try {
     // Access the data sent from the frontend
     console.log("request body", JSON.stringify(req.body));
@@ -60,7 +60,6 @@ app.post('/spanishInput', async (req, res) => {
     // Upload to Cloudinary
     const responseCloudinary = await UploadCloudinary(imageLink[0], aiResponse);
     console.log('responseCloudinary', responseCloudinary);
-    console.log('responseCloudinary', responseCloudinary.result);
     let finalImageLink = '';
     if (responseCloudinary?.url) {
       finalImageLink = responseCloudinary.url;
