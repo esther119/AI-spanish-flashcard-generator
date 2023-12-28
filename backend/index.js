@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
@@ -11,6 +12,7 @@ const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = pro
 import { v2 as cloudinary } from 'cloudinary';
 import cloudinarySearch from './getCloudinary.js';
 const app = express();
+app.use(bodyParser.json()); 
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -39,15 +41,15 @@ app.get('/displayImages', async (req, res) => {
 
 app.post('/spanishInput', (req, res) => {
   // Access the data sent from the frontend
-  console.log("request body", req.body);
-  const spanishWord = req.body.spanishWord;
+  console.log("request body", JSON.stringify(req.body));
+  const spanishWord = req.body;
   console.log('backend received:', spanishWord)
 
   // Process the data (e.g., translation logic)
   // const translation = translateSpanishToEnglish(spanishWord);
 
   // Send a response back to the frontend
-  res.json({ translation: 'translation' });
+  res.json("send back");
 });
 
 app.listen(1000, () => {
