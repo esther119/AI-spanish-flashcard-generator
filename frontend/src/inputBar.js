@@ -6,10 +6,10 @@ function SpanishInput({imageData, setImageData}) {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  useEffect(() => {
-    // This effect will run whenever imageData changes
-    console.log("Updated imageData:", imageData);
-  }, [imageData]); // Only run the effect when imageData changes
+  // useEffect(() => {
+  //   // This effect will run whenever imageData changes
+  //   console.log("Updated imageData:", imageData);
+  // }, [imageData]); // Only run the effect when imageData changes
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
@@ -46,7 +46,7 @@ function SpanishInput({imageData, setImageData}) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="spanishInput">Enter a Spanish word:</label>
+        <label htmlFor="spanishInput">Add a Spanish word flashcard:</label>
         <input
           type="text"
           id="spanishInput"
