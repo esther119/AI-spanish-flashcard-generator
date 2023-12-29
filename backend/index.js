@@ -16,7 +16,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import cloudinarySearch from './getCloudinary.js';
 const app = express();
 app.use(bodyParser.json()); 
-const cors = require('cors');
+import cors from 'cors';
 app.use(cors({
   origin: 'https://replicate-nodejs-beuf.vercel.app'
 }));
