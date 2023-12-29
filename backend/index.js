@@ -24,7 +24,7 @@ cloudinary.config({
 });
 
 
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
   res.json('Hello World!'); // Change this line
 });
 
@@ -59,7 +59,7 @@ app.post('/addSpanishWord', async (req, res) => {
 
     // Upload to Cloudinary
     const responseCloudinary = await UploadCloudinary(imageLink[0], aiResponse);
-    console.log('responseCloudinary', responseCloudinary);
+    // console.log('responseCloudinary', responseCloudinary);
     let finalImageLink = '';
     if (responseCloudinary?.url) {
       finalImageLink = responseCloudinary.url;
