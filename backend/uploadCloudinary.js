@@ -17,7 +17,7 @@ export default function UploadCloudinary(imageLink, context) {
             openai: context.prompt,
             spanish: context.original,
           },
-          tags: 'spanish',
+          // tags: 'spanish',
         },
         function (error, result) {
           if (error) {

@@ -14,9 +14,10 @@ const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = pro
 // Cloudinary configuration
 import { v2 as cloudinary } from 'cloudinary';
 import cloudinarySearch from './getCloudinary.js';
+import cors from 'cors';
+
 const app = express();
 app.use(bodyParser.json()); 
-import cors from 'cors';
 app.use(cors({
   origin: 'https://replicate-nodejs-beuf.vercel.app'
 }));
