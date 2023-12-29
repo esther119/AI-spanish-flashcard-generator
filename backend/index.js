@@ -16,6 +16,11 @@ import { v2 as cloudinary } from 'cloudinary';
 import cloudinarySearch from './getCloudinary.js';
 const app = express();
 app.use(bodyParser.json()); 
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://replicate-nodejs-beuf.vercel.app'
+}));
+
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
