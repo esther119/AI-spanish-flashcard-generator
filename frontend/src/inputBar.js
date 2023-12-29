@@ -12,10 +12,11 @@ function SpanishInput({imageData, setImageData}) {
   // }, [imageData]); // Only run the effect when imageData changes
 
   const handleSubmit = async (e) => {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     e.preventDefault(); // Prevent the default form submission behavior
 
     try {
-      const response = await fetch("/addSpanishWord", {
+      const response = await fetch(`${backendUrl}/addSpanishWord`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON

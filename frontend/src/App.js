@@ -4,10 +4,10 @@ import SpanishInput from "./inputBar";
 
 function App() {
   const [imageData, setImageData] = useState(null);
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   useEffect(() => {
     console.log("useEffect");
-    fetch("/displayImages")
+    fetch(`${backendUrl}/displayImages`)
       .then((res) => res.json())
       .then((data) => {
         setImageData(data);
