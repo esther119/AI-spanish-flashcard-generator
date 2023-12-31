@@ -18,9 +18,7 @@ import cors from 'cors';
 
 const app = express();
 app.use(bodyParser.json()); 
-app.use(cors({
-  origin: 'https://replicate-nodejs-beuf.vercel.app'
-}));
+app.use(cors());
 
 
 cloudinary.config({
