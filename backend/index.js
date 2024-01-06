@@ -73,7 +73,7 @@ app.post('/addSpanishWord', async (req, res) => {
     }
   
     // Get the original Spanish word from aiResponse
-    const originalSpanishWord = aiResponse.original;
+    const originalSpanishWord = aiResponse.infinitive;
 
     // Create a new flashcard object with the data
     const newFlashcard = {

@@ -11,19 +11,19 @@ async function generateImagePrompt(word) {
   try {
     const system_message = `
       Spanish word: ${word}
-      1. If it is a verb, put the Spanish word into infinitive. Keep the original if not
+      1. If it is a verb, put the Spanish word into infinitive. Keep the original word if it is not a verb.
       2. Translate the word into English. 
       3. Imagine you are an AI assistant for an image prompt. Use the English word to generate a simple but direct prompt to draw. Try to use concrete objects or scenery and generate the prompt.
 
       Think about it step by step. 
       Output JSON format: 
-      {"original", "...", "english": "..", 
+      {"infinitive", "...", "english": "..", 
       "prompt": ".."}
     `;
 
     const chatCompletion = await openai.chat.completions.create({
       messages: [{ role: "system", content: system_message }],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
     });
 
     const response = chatCompletion.choices[0].message.content;
