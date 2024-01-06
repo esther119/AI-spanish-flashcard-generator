@@ -1,4 +1,4 @@
-# Spanish Flashcard AI generation
+# AI Spanish Flashcard AI Generator
 This is a tool where you can insert new Spanish vocabulary, and it will automatically generate a flashcard with an AI-generated image corresponding to the vocabulary for you.
 
 ## Background 
