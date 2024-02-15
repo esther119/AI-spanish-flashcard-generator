@@ -1,16 +1,20 @@
 import express from "express";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
 import generateImagePrompt from "./openai.js";
 import generateImageSafe from "./replicate.js";
 import UploadCloudinary from "./uploadCloudinary.js";
-import cloudinarySearch from "./getCloud.js";
 
-const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
-const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
-const CLOUDINARY_API_SECRET = process.env.CLOUDINARY_API_SECRET;
+// Load environment variables from .env file
+dotenv.config();
+
+// Now you can access environment variables with process.env
+const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
+  process.env;
 
 // Cloudinary configuration
 import { v2 as cloudinary } from "cloudinary";
+import cloudinarySearch from "./getCloud.js";
 import cors from "cors";
 
 const app = express();
@@ -24,7 +28,7 @@ cloudinary.config({
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Root!" });
+  res.json("Hello World!"); // Change this line
 });
 
 app.get("/displayImages", async (req, res) => {
@@ -84,23 +88,6 @@ app.post("/addSpanishWord", async (req, res) => {
   }
 });
 
-app.get("/myfunction/get", (req, res) => {
-  // console.log("Received a GET request to /myfunction");
-  // console.log("Cloudinary Cloud Name:", CLOUDINARY_CLOUD_NAME);
-  res.json({
-    message: "Hello, World!",
-  });
+app.listen(1000, () => {
+  console.log("Server is listening on port 1000");
 });
-
-// Handler for POST requests to /hello
-app.post("/myfunction/post", (req, res) => {
-  console.log("Received a POST request to /myfunction/hell");
-  res.json({ message: "Received a POST request to /myfunction/hell" });
-});
-
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-
-export default app;
