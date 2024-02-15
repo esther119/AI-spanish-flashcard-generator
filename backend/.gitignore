@@ -1,7 +1,5 @@
+template.yaml
 node_modules
 .env
-getCloudinary.js
-cloudinary.js
 .aws-sam
-.template.yaml
 ```
