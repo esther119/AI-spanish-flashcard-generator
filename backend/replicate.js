@@ -11,13 +11,13 @@ async function generateImage(prompt) {
   );
 }
 async function generateImageSafe(prompt) {
-    try {
-      return await generateImage(prompt);
-    } catch (error) {
-      console.error(`Error occurred for prompt "${prompt}":`, error);
-      // Return null or a custom error object
-      return null; 
-    }
+  try {
+    return await generateImage(prompt);
+  } catch (error) {
+    console.error(`Error occurred for prompt "${prompt}":`, error);
+    // Return null or a custom error object
+    return null;
   }
+}
 
-  export default generateImageSafe;
+export default generateImageSafe;
