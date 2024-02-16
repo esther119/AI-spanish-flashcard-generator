@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-function SpanishInput({imageData, setImageData}) {
+function SpanishInput({ imageData, setImageData }) {
   const [inputValue, setInputValue] = useState("");
   //   const [response, setResponse] = useState('');
   const handleInputChange = (e) => {
@@ -10,6 +10,32 @@ function SpanishInput({imageData, setImageData}) {
   //   // This effect will run whenever imageData changes
   //   console.log("Updated imageData:", imageData);
   // }, [imageData]); // Only run the effect when imageData changes
+  const handleSubmit2 = async (e) => {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    e.preventDefault(); // Prevent the default form submission behavior
+
+    try {
+      const response = await fetch(`${backendUrl}/function/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain", // Set the content type to JSON
+        },
+        body: JSON.stringify({ word: inputValue }), // Convert data to JSON string
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      // If you expect a JSON response from the server, you can parse it like this:
+      const responseData = await response.json();
+      console.log("new flahscard data", responseData);
+
+      // console.log("updated imageData", imageData);
+    } catch (error) {
+      console.error("Error sending data to the backend:", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
@@ -39,11 +65,11 @@ function SpanishInput({imageData, setImageData}) {
       updatedData[spanishWord] = imageLink;
       setImageData(updatedData);
 
-      // console.log("updated imageData", imageData);      
+      // console.log("updated imageData", imageData);
     } catch (error) {
       console.error("Error sending data to the backend:", error);
     }
-  }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>

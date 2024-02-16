@@ -14,8 +14,10 @@ import { v2 as cloudinary } from "cloudinary";
 import cors from "cors";
 
 const app = express();
-app.use(bodyParser.json());
 app.use(cors());
+app.options("/addSpanishWord", cors());
+app.options("/myfunction/post", cors());
+app.use(bodyParser.json());
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -37,7 +39,7 @@ app.get("/displayImages", async (req, res) => {
   }
 });
 
-app.post("/addSpanishWord", async (req, res) => {
+app.post("/addSpanishWord", cors(), async (req, res) => {
   try {
     // Access the data sent from the frontend
     console.log("request body", JSON.stringify(req.body));
@@ -76,7 +78,14 @@ app.post("/addSpanishWord", async (req, res) => {
     };
 
     // Respond with success status and the newFlashcard if needed
-    return res.status(200).json({ flashcard: newFlashcard });
+    return res.status(200).json({
+      flashcard: newFlashcard,
+      headers: {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Origin": "*", // Allow from anywhere
+        "Access-Control-Allow-Methods": "OPTIONS, POST", // Allow OPTIONS for preflight and POST for your request
+      },
+    });
   } catch (error) {
     // Handle errors here, such as logging or returning an error response.
     console.error("Error:", error);
@@ -87,15 +96,22 @@ app.post("/addSpanishWord", async (req, res) => {
 app.get("/myfunction/get", (req, res) => {
   // console.log("Received a GET request to /myfunction");
   // console.log("Cloudinary Cloud Name:", CLOUDINARY_CLOUD_NAME);
-  res.json({
+  res.status(200).json({
     message: "Hello, World!",
   });
 });
 
 // Handler for POST requests to /hello
 app.post("/myfunction/post", (req, res) => {
-  console.log("Received a POST request to /myfunction/hell");
-  res.json({ message: "Received a POST request to /myfunction/hell" });
+  console.log("Received a POST request to /myfunction/hello");
+  res.status(200).json({
+    message: "Received a POST request to /myfunction/hello",
+    headers: {
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Origin": "*", // Allow from anywhere
+      "Access-Control-Allow-Methods": "OPTIONS, POST", // Allow OPTIONS for preflight and POST for your request
+    },
+  });
 });
 
 const port = 3000;
