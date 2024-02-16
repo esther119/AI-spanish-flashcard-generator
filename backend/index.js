@@ -17,6 +17,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.options("*", (req, res) => {
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS,POST");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token"
+  );
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.sendStatus(200);
+});
+
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
   api_key: CLOUDINARY_API_KEY,
