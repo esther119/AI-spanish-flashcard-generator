@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import SearchForm from "./inputBar2";
 
-function SpanishInput({imageData, setImageData}) {
+function SpanishInput({ imageData, setImageData }) {
   const [inputValue, setInputValue] = useState("");
   //   const [response, setResponse] = useState('');
   const handleInputChange = (e) => {
@@ -39,14 +40,15 @@ function SpanishInput({imageData, setImageData}) {
       updatedData[spanishWord] = imageLink;
       setImageData(updatedData);
 
-      // console.log("updated imageData", imageData);      
+      // console.log("updated imageData", imageData);
     } catch (error) {
       console.error("Error sending data to the backend:", error);
     }
-  }
+  };
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <SearchForm />
         <label htmlFor="spanishInput">Add a Spanish word flashcard:</label>
         <input
           type="text"
