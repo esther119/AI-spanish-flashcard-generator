@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import SearchForm from "./inputBar2";
+import React, { useState } from "react";
+import SearchBar from "./inputBar2";
 
 function SpanishInput({ imageData, setImageData }) {
   const [inputValue, setInputValue] = useState("");
   //   const [response, setResponse] = useState('');
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+  const handleInputChange = (text) => {
+    setInputValue(text);
   };
   // useEffect(() => {
   //   // This effect will run whenever imageData changes
   //   console.log("Updated imageData:", imageData);
   // }, [imageData]); // Only run the effect when imageData changes
 
-  const handleSubmit = async (e) => {
+  const callBackend = async (e) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
     e.preventDefault(); // Prevent the default form submission behavior
 
@@ -47,18 +47,7 @@ function SpanishInput({ imageData, setImageData }) {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <SearchForm />
-        <label htmlFor="spanishInput">Add a Spanish word flashcard:</label>
-        <input
-          type="text"
-          id="spanishInput"
-          value={inputValue}
-          onChange={handleInputChange}
-          placeholder="Enter a Spanish word"
-        />
-        <button type="submit">Submit</button> {/* Add a submit button */}
-      </form>
+      <SearchBar submission={callBackend} onInputChange={handleInputChange} />
     </div>
   );
 }
