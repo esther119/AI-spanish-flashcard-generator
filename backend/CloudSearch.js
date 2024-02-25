@@ -5,7 +5,7 @@ async function cloudinarySearch() {
 
   try {
     const response = await cloudinary.search
-      //   .expression("tags=spanish")
+      .expression("tags=spanish")
       .sort_by("created_at", "desc")
       .with_field("context")
       .max_results(100)

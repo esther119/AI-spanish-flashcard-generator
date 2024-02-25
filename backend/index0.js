@@ -14,7 +14,7 @@ const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
 
 // Cloudinary configuration
 import { v2 as cloudinary } from "cloudinary";
-import cloudinarySearch from "./getCloud.js";
+import cloudinarySearch from "./CloudSearch.js";
 import cors from "cors";
 
 const app = express();

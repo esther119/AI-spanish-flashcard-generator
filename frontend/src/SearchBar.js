@@ -1,8 +1,22 @@
 import React from "react";
+import { useState } from "react";
 
 const SearchBar = ({ submission, onInputChange }) => {
+  const [localInputValue, setLocalInputValue] = useState("");
+
+  const handleInputChange = (e) => {
+    setLocalInputValue(e.target.value);
+    console.log("inputValue", localInputValue);
+  };
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // onInputChange(localInputValue); // You might want to pass the inputValue to your onInputChange function
+    submission(localInputValue); // You might want to pass the inputValue to your submission function
+    setLocalInputValue(""); // Reset the input value to an empty string
+  };
   return (
-    <form className="max-w-md mx-auto" onSubmit={submission}>
+    <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -13,7 +27,8 @@ const SearchBar = ({ submission, onInputChange }) => {
         <input
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Add a Spanish new word"
-          onChange={(e) => onInputChange(e.target.value)}
+          onChange={handleInputChange}
+          value={localInputValue}
           required
         />
         <button

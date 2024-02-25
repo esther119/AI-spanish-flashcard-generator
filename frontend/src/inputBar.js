@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import SearchBar from "./inputBar2";
+import SearchBar from "./SearchBar";
 
 function SpanishInput({ imageData, setImageData }) {
   const [inputValue, setInputValue] = useState("");
   //   const [response, setResponse] = useState('');
   const handleInputChange = (text) => {
     setInputValue(text);
+    console.log("inputValue", inputValue);
   };
   // useEffect(() => {
   //   // This effect will run whenever imageData changes
   //   console.log("Updated imageData:", imageData);
   // }, [imageData]); // Only run the effect when imageData changes
 
-  const callBackend = async (e) => {
+  const callBackend = async (inputValue) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
-    e.preventDefault(); // Prevent the default form submission behavior
+    // e.preventDefault(); // Prevent the default form submission behavior
 
     try {
       const response = await fetch(`${backendUrl}/addSpanishWord`, {

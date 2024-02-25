@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import generateImagePrompt from "./openai.js";
 import generateImageSafe from "./replicate.js";
 import UploadCloudinary from "./uploadCloudinary.js";
-import cloudinarySearch from "./getCloud.js";
+import cloudinarySearch from "./CloudSearch.js";
 
 const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
 const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
