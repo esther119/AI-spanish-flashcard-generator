@@ -4,13 +4,6 @@ import SearchBar from "./SearchBar";
 function SpanishInput({ imageData, setImageData }) {
   const callBackend = async (inputValue) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
-    // const placeholderImage =
-    //   "https://res.cloudinary.com/dbdfkyhov/image/upload/v1708823274/ljpxhlwfgduj8or5x86x.png";
-
-    // // Set placeholder image immediately after submission
-    // const updatedDataWithPlaceholder = { ...imageData };
-    // updatedDataWithPlaceholder[inputValue] = placeholderImage;
-    // setImageData(updatedDataWithPlaceholder);
 
     try {
       const oldSpanishWord = inputValue;
@@ -40,14 +33,16 @@ function SpanishInput({ imageData, setImageData }) {
       console.log("new flahscard data", responseData);
       const spanishWord = responseData.flashcard.originalSpanishWord;
       const imageLink = responseData.flashcard.finalImageLink;
-
+      console.log("fininish generation, is loading is false now");
       // Update the state
-      updatedData[inputValue] = {
-        word: spanishWord,
-        imageLink: imageLink,
-        isLoading: false,
-      };
-      setImageData(updatedData);
+      setImageData((prevData) => ({
+        ...prevData,
+        [inputValue]: {
+          word: spanishWord,
+          imageLink: imageLink,
+          isLoading: false,
+        },
+      }));
 
       // console.log("updated imageData", imageData);
     } catch (error) {
