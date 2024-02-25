@@ -27,11 +27,7 @@ export default function FlashCardList({ imageData }) {
       {groupedFlashCards.map((group, index) => (
         <div className="flex flex-row card-grid" key={index}>
           {group.map((flashCard) => (
-            <FlashCard
-              flashCard={flashCard}
-              isLoading={flashCard.isLoading}
-              key={flashCard.id}
-            />
+            <FlashCard flashCard={flashCard} key={flashCard.id} />
           ))}
         </div>
       ))}

@@ -14,8 +14,14 @@ function SpanishInput({ imageData, setImageData }) {
 
     try {
       const oldSpanishWord = inputValue;
+      console.log("oldSpanishWord", oldSpanishWord);
       const updatedData = { ...imageData };
-      updatedData[oldSpanishWord] = { imageLink: "", isLoading: true };
+      updatedData[inputValue] = {
+        word: oldSpanishWord,
+        imageLink: "",
+        isLoading: true,
+      };
+      setImageData(updatedData);
       const response = await fetch(`${backendUrl}/addSpanishWord`, {
         method: "POST",
         headers: {
@@ -36,7 +42,7 @@ function SpanishInput({ imageData, setImageData }) {
       const imageLink = responseData.flashcard.finalImageLink;
 
       // Update the state
-      updatedData[oldSpanishWord] = {
+      updatedData[inputValue] = {
         word: spanishWord,
         imageLink: imageLink,
         isLoading: false,

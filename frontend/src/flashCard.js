@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-export default function FlashCard({ flashCard, isLoading }) {
+export default function FlashCard({ flashCard }) {
   // console.log("flashCards", flashCard);
   const [flip, setFlip] = useState(false);
-
+  console.log(`flash card ${flashCard.back} is loading`, flashCard.isLoading);
   const handleClick = () => {
     setFlip(!flip);
   };
-  if (isLoading) {
+  if (flashCard.isLoading) {
     <div role="status">
       <svg
         aria-hidden="true"
