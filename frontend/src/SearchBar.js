@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const SearchBar = ({ submission, onInputChange }) => {
+const SearchBar = ({ submission }) => {
   const [localInputValue, setLocalInputValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -11,7 +11,6 @@ const SearchBar = ({ submission, onInputChange }) => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onInputChange(localInputValue); // You might want to pass the inputValue to your onInputChange function
     submission(localInputValue); // You might want to pass the inputValue to your submission function
     setLocalInputValue(""); // Reset the input value to an empty string
   };
