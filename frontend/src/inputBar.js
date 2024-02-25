@@ -2,15 +2,20 @@ import React from "react";
 import SearchBar from "./SearchBar";
 
 function SpanishInput({ imageData, setImageData }) {
-  // useEffect(() => {
-  //   // This effect will run whenever imageData changes
-  //   console.log("Updated imageData:", imageData);
-  // }, [imageData]); // Only run the effect when imageData changes
-
   const callBackend = async (inputValue) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    // const placeholderImage =
+    //   "https://res.cloudinary.com/dbdfkyhov/image/upload/v1708823274/ljpxhlwfgduj8or5x86x.png";
+
+    // // Set placeholder image immediately after submission
+    // const updatedDataWithPlaceholder = { ...imageData };
+    // updatedDataWithPlaceholder[inputValue] = placeholderImage;
+    // setImageData(updatedDataWithPlaceholder);
 
     try {
+      const oldSpanishWord = inputValue;
+      const updatedData = { ...imageData };
+      updatedData[oldSpanishWord] = { imageLink: "", isLoading: true };
       const response = await fetch(`${backendUrl}/addSpanishWord`, {
         method: "POST",
         headers: {
@@ -24,14 +29,18 @@ function SpanishInput({ imageData, setImageData }) {
       }
 
       // If you expect a JSON response from the server, you can parse it like this:
+
       const responseData = await response.json();
       console.log("new flahscard data", responseData);
       const spanishWord = responseData.flashcard.originalSpanishWord;
       const imageLink = responseData.flashcard.finalImageLink;
 
       // Update the state
-      const updatedData = { ...imageData };
-      updatedData[spanishWord] = imageLink;
+      updatedData[oldSpanishWord] = {
+        word: spanishWord,
+        imageLink: imageLink,
+        isLoading: false,
+      };
       setImageData(updatedData);
 
       // console.log("updated imageData", imageData);
